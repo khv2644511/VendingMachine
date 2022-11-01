@@ -1,29 +1,56 @@
-// inputMoney에 금액 입력 후 inputMoneyBtn 버튼 클릭하면 showChange(잔액)에 표시됨
-const inputMoneyBtn = document.getElementById("input_money_btn");
-inputMoneyBtn.addEventListener("click", function () {
-  const inputMoney = document.getElementById("input_money").value;
-  console.log(inputMoney);
+/** @format */
 
-  const showChange = document.getElementById("show_change");
-  showChange.innerHTML = inputMoney;
-});
+const inputMoney = document.querySelector("#input_money");
+const inputMoneyBtn = document.querySelector("#input_money_btn");
+const showChange = document.querySelector("#show_change");
 
-// selectDrink 음료를 클릭하면 showChange(잔액)에 음료 금액만큼 차감됨
-const selectDrink = document.getElementById("select_drink");
+const original_Drink = document.querySelector(".Original");
+const Violet_Drink = document.querySelector(".Violet");
+const Yellow_Drink = document.querySelector(".Yellow");
+const Cool_Drink = document.querySelector(".Cool");
+const Green_Drink = document.querySelector(".Green");
+const Orange_Drink = document.querySelector(".Orange");
 
-selectDrink.addEventListener("click", function () {
-  const showChange = document.getElementById("show_change").innerHTML;
+// const drinkPriceObj = {
+//   original_Drink: 1000,
+//   Violet_Drink: 1000,
+//   Yellow_Drink: 1000,
+//   Cool_Drink: 1000,
+//   Green_Drink: 1000,
+//   Orange_Drink: 1000,
+// };
 
-  const priceOfDrink = document.getElementById("price").innerHTML;
+let drinkList = [
+  original_Drink,
+  Violet_Drink,
+  Yellow_Drink,
+  Cool_Drink,
+  Green_Drink,
+  Orange_Drink,
+];
 
-  console.log("hi");
-  // console.log(priceOfDrink);
+drinkList.forEach((el) =>
+  el.addEventListener("click", () => change_ChangeMoney(el))
+);
 
-  console.log(parseInt(priceOfDrink));
-  console.log(showChange);
+inputMoneyBtn.addEventListener("click", get_show_InputMoneyValue);
 
-  const Change = parseInt(showChange - priceOfDrink);
-  console.log(Change);
-  const calc = document.getElementById("show_change");
-  calc.innerHTML = Change;
-});
+function get_show_InputMoneyValue() {
+  let inputVlaue = inputMoney.value;
+  console.log(typeof inputVlaue);
+  if (isNaN(inputVlaue)) {
+    alert("숫자를 입력하세요");
+    inputMoney.value = "";
+  } else {
+    console.log(inputMoney.value);
+    inputMoney.value = "";
+    showChange.innerText = parseInt(inputVlaue);
+    // toLocaleString();
+  }
+}
+
+function change_ChangeMoney(event) {
+  console.log(el);
+  // console.log(event.currentTarget);
+  console.log(showChange.textContent);
+}
